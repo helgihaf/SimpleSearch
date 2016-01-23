@@ -1,12 +1,4 @@
-﻿//-------------------------------------------------------------------------------------------------
-//
-// SearchTextForm.cs -- The SearchTextForm form class.
-//
-// Copyright (c) 2008 Marel Food Systems. All rights reserved.
-//
-//-------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,10 +9,6 @@ using System.Windows.Forms;
 
 namespace SimpleSearch
 {
-	//---------------------------------------------------------------------------------------------
-	/// <summary>
-	/// The SearchTextForm form class TODO: Describe class here
-	/// </summary>
 	public partial class SearchTextForm : Form
 	{
 		public SearchTextForm()
@@ -58,7 +46,7 @@ namespace SimpleSearch
 			{
 				if (MultiText)
 				{
-					return Utils.LinesToSeparatedString(SeperatorChar, textBoxText.Lines);
+                    return (new MultilineText(textBoxText.Lines, SeperatorChar.ToString())).Text;
 				}
 				else
 				{
@@ -83,11 +71,11 @@ namespace SimpleSearch
 		{
 			if (checkBoxMultiText.Checked && textBoxText.Text.Length > 0)
 			{
-				textBoxText.Lines = textBoxText.Text.Split(SeperatorChar);
-			}
+                textBoxText.Lines = (new MultilineText(textBoxText.Text, SeperatorChar.ToString())).Lines;
+            }
 			else
 			{
-				textBoxText.Text = Utils.LinesToSeparatedString(SeperatorChar, textBoxText.Lines);
+				textBoxText.Text = (new MultilineText(textBoxText.Lines, SeperatorChar.ToString())).Text;
 			}
 		}
 

@@ -10,6 +10,7 @@ using System.IO;
 using System.Diagnostics;
 using System.Collections.Specialized;
 using System.Collections.ObjectModel;
+using Marson.SimpleSearch;
 
 namespace SimpleSearch
 {
@@ -139,7 +140,8 @@ namespace SimpleSearch
 			listViewResults.Items.Clear();
 			ClearImageList();
 
-			searchEngine.SearchDirectory = comboBoxDirectory.Text;
+            searchEngine.SearchDirectories.Clear();
+            searchEngine.SearchDirectories.AddRange((new MultilineText(comboBoxDirectory.Text)).Lines);
 			searchEngine.DirectoryPath = comboBoxDirPath.Text;
 			searchEngine.FileName = comboBoxFileName.Text;
 			searchEngine.Texts = GetSearchTexts();
@@ -306,7 +308,7 @@ namespace SimpleSearch
 			AddPendingSearches();
 			timer.Enabled = false;
 
-			if (e.Cancelled || searchEngine.Cancelled)
+			if (e.Cancelled || searchEngine.IsCancelPending)
 			{
 				SetStatusText("Cancelled, found " + resultCount.ToString() + " files.");
 			}
@@ -326,7 +328,7 @@ namespace SimpleSearch
 			else
 			{
 				SetStatusText("Found " + resultCount.ToString() + " files.");
-				ReadOnlyCollection<SearchEngine.SearchHit> hitList = searchEngine.HitList;
+				var hitList = searchEngine.HitList;
 				if (labelUsingMultiText.Visible && hitList != null && hitList.Count > 0)
 				{
 					ShowHitListWindow(hitList);
@@ -337,10 +339,10 @@ namespace SimpleSearch
 			progressBar.Visible = false;
 		}
 
-		private void ShowHitListWindow(ReadOnlyCollection<SearchEngine.SearchHit> hitList)
+		private void ShowHitListWindow(IEnumerable<SearchHit> hitList)
 		{
 			TextForm textForm = new TextForm();
-			foreach (SearchEngine.SearchHit hit in hitList)
+			foreach (SearchHit hit in hitList)
 			{
 				textForm.MainTextBox.AppendText(hit.Text + " " + hit.Hits.ToString() + Environment.NewLine);
 			}
@@ -578,30 +580,30 @@ namespace SimpleSearch
 
 		private void buttonTextOptions_Click(object sender, EventArgs e)
 		{
-			this.Validate();
-			SearchTextForm form = new SearchTextForm();
-			if (comboBoxText.Text.Length > 0)
-			{
-				form.SearchText = comboBoxText.Text;
-			}
+            Validate();
+            SearchTextForm form = new SearchTextForm();
+            if (comboBoxText.Text.Length > 0)
+            {
+                form.SearchText = comboBoxText.Text;
+            }
 
-			form.MultiText = Properties.Settings.Default.MultiText;
-			form.SeperatorChar = Properties.Settings.Default.SeperatorChar;
-			if (form.ShowDialog(this) == DialogResult.OK)
-			{
-				Properties.Settings.Default.MultiText = form.MultiText;
-				Properties.Settings.Default.SeperatorChar = form.SeperatorChar;
+            form.MultiText = Properties.Settings.Default.MultiText;
+            form.SeperatorChar = Properties.Settings.Default.SeperatorChar;
+            if (form.ShowDialog(this) == DialogResult.OK)
+            {
+                Properties.Settings.Default.MultiText = form.MultiText;
+                Properties.Settings.Default.SeperatorChar = form.SeperatorChar;
 
-				if (form.MultiText)
-				{
-					labelUsingMultiText.Text = string.Format("Multiple text search using {0} as seperator", form.SeperatorChar);
-					labelUsingMultiText.Visible = true;
-					seperatorChar = form.SeperatorChar;
-				}
-				labelUsingMultiText.Visible = form.MultiText;
-				comboBoxText.Text = form.SearchText;
-			}
-		}
+                if (form.MultiText)
+                {
+                    labelUsingMultiText.Text = string.Format("Multiple text search using {0} as seperator", form.SeperatorChar);
+                    labelUsingMultiText.Visible = true;
+                    seperatorChar = form.SeperatorChar;
+                }
+                labelUsingMultiText.Visible = form.MultiText;
+                comboBoxText.Text = form.SearchText;
+            }
+        }
 
 		private void copyEntirelineToolStripMenuItem_Click(object sender, EventArgs e)
 		{
@@ -786,6 +788,20 @@ namespace SimpleSearch
 			richTextBoxPreview.SelectionColor = Color.White;
 		}
 
-		
-	}
+        private void buttonDirectoryOptions_Click(object sender, EventArgs e)
+        {
+            EditMultiText(this, "Search Directories", comboBoxDirectory);
+        }
+
+        private static void EditMultiText(IWin32Window owner, string title, ComboBox textComboBox)
+        {
+            var form = new MultilineTextForm();
+            form.Text = title;
+            form.Value = textComboBox.Text;
+            if (form.ShowDialog(owner) == DialogResult.OK)
+            {
+                textComboBox.Text = form.Value;
+            }
+        }
+    }
 }

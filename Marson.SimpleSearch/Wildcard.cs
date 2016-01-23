@@ -1,34 +1,7 @@
-//-------------------------------------------------------------------------------------------------
-//
-// Wildcard.cs -- The Wildcard class.
-//
-// Copyright (c) Marel hf. 2006. All rights reserved.
-//
-//-------------------------------------------------------------------------------------------------
-
-#region File history
-/*
-	$History: Wildcard.cs $
- * 
- * *****************  Version 3  *****************
- * User: Helgihaf     Date: 15.03.08   Time: 11:39
- * Updated in $/G5/Marel/Common/Current/Marel.Common/Utilities
- * 
- * *****************  Version 2  *****************
- * User: Helgihaf     Date: 10.03.08   Time: 12:26
- * Updated in $/G5/Marel/Common/Current/Marel.Common/Utilities
- * 
- * *****************  Version 1  *****************
- * User: Helgihaf     Date: 3.12.07    Time: 17:22
- * Created in $/G5/Marel/Common/Current/Marel.Common/Utilities
-*/
-#endregion
-
 using System;
 
-namespace SimpleSearch
+namespace Marson.SimpleSearch
 {
-	//-----------------------------------------------------------------------------------------
 	/// <summary>
 	/// Class providing wildcard string matching as found in standard file system wildcards.
 	/// </summary>
@@ -43,7 +16,6 @@ namespace SimpleSearch
 		/// </summary>
 		private static char[] wildcards = new char[] { '*', '?' };
 
-		//-----------------------------------------------------------------------------------------
 		/// <summary>
 		/// Returns true if the string matches the pattern which may contain * and ? wildcards.
 		/// Matching is done without regard to case.
@@ -56,7 +28,6 @@ namespace SimpleSearch
 			return Match(pattern, s, false);
 		}
 
-		//-----------------------------------------------------------------------------------------
 		/// <summary>
 		/// Returns true if the specified string matches the pattern which may contain * and ? wildcards.
 		/// </summary>
@@ -130,7 +101,6 @@ namespace SimpleSearch
 		}
 
 
-		//-----------------------------------------------------------------------------------------
 		/// <summary>
 		/// Checks if the specified string contains any wildcard characters.
 		/// </summary>

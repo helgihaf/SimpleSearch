@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.buttonDirectoryOptions = new System.Windows.Forms.Button();
             this.comboBoxText = new System.Windows.Forms.ComboBox();
             this.comboBoxFileName = new System.Windows.Forms.ComboBox();
             this.comboBoxDirPath = new System.Windows.Forms.ComboBox();
@@ -86,6 +87,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel1.Controls.Add(this.buttonDirectoryOptions);
             this.panel1.Controls.Add(this.comboBoxText);
             this.panel1.Controls.Add(this.comboBoxFileName);
             this.panel1.Controls.Add(this.comboBoxDirPath);
@@ -104,6 +106,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(761, 125);
             this.panel1.TabIndex = 0;
+            // 
+            // buttonDirectoryOptions
+            // 
+            this.buttonDirectoryOptions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonDirectoryOptions.Location = new System.Drawing.Point(644, 23);
+            this.buttonDirectoryOptions.Name = "buttonDirectoryOptions";
+            this.buttonDirectoryOptions.Size = new System.Drawing.Size(24, 23);
+            this.buttonDirectoryOptions.TabIndex = 2;
+            this.buttonDirectoryOptions.Text = "...";
+            this.buttonDirectoryOptions.UseVisualStyleBackColor = true;
+            this.buttonDirectoryOptions.Click += new System.EventHandler(this.buttonDirectoryOptions_Click);
             // 
             // comboBoxText
             // 
@@ -143,7 +156,7 @@
             this.comboBoxDirPath.Location = new System.Drawing.Point(12, 83);
             this.comboBoxDirPath.Name = "comboBoxDirPath";
             this.comboBoxDirPath.Size = new System.Drawing.Size(195, 21);
-            this.comboBoxDirPath.TabIndex = 4;
+            this.comboBoxDirPath.TabIndex = 5;
             this.comboBoxDirPath.TextChanged += new System.EventHandler(this.TextChangedHandler);
             // 
             // label4
@@ -152,7 +165,7 @@
             this.label4.Location = new System.Drawing.Point(12, 67);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(182, 13);
-            this.label4.TabIndex = 3;
+            this.label4.TabIndex = 4;
             this.label4.Text = "Directory path with optional wildcards";
             // 
             // labelUsingMultiText
@@ -162,7 +175,7 @@
             this.labelUsingMultiText.Location = new System.Drawing.Point(419, 106);
             this.labelUsingMultiText.Name = "labelUsingMultiText";
             this.labelUsingMultiText.Size = new System.Drawing.Size(35, 13);
-            this.labelUsingMultiText.TabIndex = 9;
+            this.labelUsingMultiText.TabIndex = 11;
             this.labelUsingMultiText.Text = "label4";
             this.labelUsingMultiText.Visible = false;
             // 
@@ -172,7 +185,7 @@
             this.buttonTextOptions.Location = new System.Drawing.Point(644, 80);
             this.buttonTextOptions.Name = "buttonTextOptions";
             this.buttonTextOptions.Size = new System.Drawing.Size(24, 23);
-            this.buttonTextOptions.TabIndex = 10;
+            this.buttonTextOptions.TabIndex = 9;
             this.buttonTextOptions.Text = "...";
             this.buttonTextOptions.UseVisualStyleBackColor = true;
             this.buttonTextOptions.Click += new System.EventHandler(this.buttonTextOptions_Click);
@@ -188,7 +201,7 @@
             this.comboBoxDirectory.IntegralHeight = false;
             this.comboBoxDirectory.Location = new System.Drawing.Point(15, 25);
             this.comboBoxDirectory.Name = "comboBoxDirectory";
-            this.comboBoxDirectory.Size = new System.Drawing.Size(653, 21);
+            this.comboBoxDirectory.Size = new System.Drawing.Size(623, 21);
             this.comboBoxDirectory.TabIndex = 1;
             this.comboBoxDirectory.TextChanged += new System.EventHandler(this.TextChangedHandler);
             // 
@@ -216,7 +229,7 @@
             this.buttonBrowse.Location = new System.Drawing.Point(674, 23);
             this.buttonBrowse.Name = "buttonBrowse";
             this.buttonBrowse.Size = new System.Drawing.Size(75, 23);
-            this.buttonBrowse.TabIndex = 2;
+            this.buttonBrowse.TabIndex = 3;
             this.buttonBrowse.Text = "&Browse";
             this.toolTip.SetToolTip(this.buttonBrowse, "Browse for a directory to search");
             this.buttonBrowse.UseVisualStyleBackColor = true;
@@ -237,7 +250,7 @@
             this.buttonSearch.Location = new System.Drawing.Point(674, 81);
             this.buttonSearch.Name = "buttonSearch";
             this.buttonSearch.Size = new System.Drawing.Size(75, 23);
-            this.buttonSearch.TabIndex = 11;
+            this.buttonSearch.TabIndex = 10;
             this.buttonSearch.Text = "&Search";
             this.buttonSearch.UseVisualStyleBackColor = true;
             this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
@@ -575,6 +588,7 @@
 		private System.Windows.Forms.ToolStripButton toolStripButtonFindNext;
 		private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.ColumnHeader columnHeaderSize;
+        private System.Windows.Forms.Button buttonDirectoryOptions;
     }
 }
 

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SimpleSearch</RootNamespace>
     <AssemblyName>SimpleSearch</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ApplicationIcon>flashlight.ico</ApplicationIcon>
     <ManifestCertificateThumbprint>36AF10669BCAA2B3DC7A05FAC53F95B3A1F63181</ManifestCertificateThumbprint>
@@ -27,7 +27,8 @@
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <OldToolsVersion>3.5</OldToolsVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <PublishUrl>http://is-hdq-dev2/G5Tools/SimpleSearch/</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
@@ -57,6 +58,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -66,6 +68,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -77,6 +80,7 @@
     <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <OutputPath>bin\x86\Release\</OutputPath>
@@ -88,6 +92,7 @@
     <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -116,6 +121,7 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MultilineText.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MainForm.resx">
@@ -130,9 +136,11 @@
     <EmbeddedResource Include="SearchDates.resx">
       <DependentUpon>SearchDates.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MultilineTextForm.resx">
+      <DependentUpon>MultilineTextForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SearchTextForm.resx">
       <DependentUpon>SearchTextForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="TextForm.resx">
       <DependentUpon>TextForm.cs</DependentUpon>
@@ -159,11 +167,16 @@
     <Compile Include="SearchDates.Designer.cs">
       <DependentUpon>SearchDates.cs</DependentUpon>
     </Compile>
-    <Compile Include="SearchEngine.cs" />
+    <Compile Include="MultilineTextForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MultilineTextForm.designer.cs">
+      <DependentUpon>MultilineTextForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SearchTextForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SearchTextForm.Designer.cs">
+    <Compile Include="SearchTextForm.designer.cs">
       <DependentUpon>SearchTextForm.cs</DependentUpon>
     </Compile>
     <Compile Include="TextForm.cs">
@@ -173,7 +186,6 @@
       <DependentUpon>TextForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Utils.cs" />
-    <Compile Include="Wildcard.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="flashlight.ico" />
@@ -209,6 +221,12 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Marson.SimpleSearch\Marson.SimpleSearch.csproj">
+      <Project>{dd3981c2-0dba-4135-9031-5227f0088d27}</Project>
+      <Name>Marson.SimpleSearch</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
