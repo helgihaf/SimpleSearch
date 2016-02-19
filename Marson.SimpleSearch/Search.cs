@@ -79,6 +79,9 @@ namespace Marson.SimpleSearch
                 catch (UnauthorizedAccessException)
                 {
                 }
+                catch (PathTooLongException)
+                {
+                }
 
                 if (files != null)
                 {
