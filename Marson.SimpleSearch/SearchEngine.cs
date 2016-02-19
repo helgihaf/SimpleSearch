@@ -48,7 +48,7 @@ namespace Marson.SimpleSearch
             else
                 searchForFileName = null;
 
-            if (searchForDirectoryPath == null && searchForFileName == null && (Texts == null || Texts.Length > 0))
+            if (searchForDirectoryPath == null && searchForFileName == null && (Texts == null || Texts.Length == 0))
                 throw new InvalidOperationException("At least one of DirectoryPath, FileName or Texts must be set.");
 
             var listSeparator = Thread.CurrentThread.CurrentCulture.TextInfo.ListSeparator;
